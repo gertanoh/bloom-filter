@@ -16,8 +16,23 @@ type BloomFilter struct {
 func main() {
 
 	fmt.Println("Lovely")
+
+	buildFlag := ""
+	flag.StringVar(&buildFlag, "build", "", "file.txt")
+	flag.Parse()
+
+	if buildFlag != "" {
+		build(buildFlag)
+	}
 }
 
+func FillDataInFilter(filter *BloomFilter, data string) {
+	// read each line of the file and add it to the filter
+	scanner,  _ := bufio.NewScanner(strings.NewReader(data))
+	for _, item := range data {
+		filter.Add(item)
+	}
+}
 
 // calculateNumBits calculates the number of bits needed in the Bloom filter
 func calculateNumBits(numItems int, falsePositiveProb float64) int {
