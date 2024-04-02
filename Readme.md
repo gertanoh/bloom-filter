@@ -15,7 +15,7 @@ It is used a lot in storage. LSM-based storage uses it to check if a key is insi
 ## How does it work ?
 A bloom filter is comprised of a array of bit and some hash functions.
 Each item is hashed to determine which bit of the array to set for this item.
-Multiple hash functions are used to reduce collisions and reduce the error rate.
+Multiple hashes functions are used to reduce collisions and reduce the error rate.
 The two parameters m (number of bits in the array) and n (number of hash functions) are central to provide good accuracy with low error rate.
 Check out these two pages to see two pages on how to pick them :
 
@@ -33,14 +33,17 @@ If you are on Unix, you can use cat /usr/share/dict/words >> dict.txt to create 
 ### Build
 
 * Build
+```
 make build
+```
 * Create the filter
+```
 ./ccspellcheck -build dict.txt
-
+```
 * Run
 ```
-./ccspellcheck hello1 adventure lov love "infelicity's4"
+./ccspellcheck hello1 adventure lov love infelicity-s4
 hello1 is misspelled
 lov is misspelled
-infelicity's4 is misspelled
+infelicity-s4 is misspelled
 ```
